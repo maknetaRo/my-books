@@ -8,9 +8,9 @@ class Genre(models.Model):
         return self.name
 
 class Book(models.Model):
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = models.TextField(max_length=50000)
     genre = models.ManyToManyField(Genre, help_text='Select a genre for a book')
 
     def __str__(self):
@@ -18,6 +18,11 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
