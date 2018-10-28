@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}<title>Moje książki</title>{% endblock %}
+  </head>
+  <body>
+    {% block sidebare %}
+      <ul>
+        <li><a href="{% url 'books' %}">Home</a></li>
+        <li><a href="">Książki</a></li>
+        <li><a href="">Autorzy</a></li>
+        <li><a href="{% url 'about' %}">O mnie</a></li>
+      </ul>
+    {% endblock %}
+    {% block content %}
+
+     {% endblock %}
+
+     {% block pagination %}
+        {% if is_paginted %}
+          <div class="pagination">
+            <span class="page-links">
+              {% if page_obj.has_previous  %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Poprzednia</a>
+              {% endif %}
+                <span class="page-current">
+                  <p>Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.</p>
+                </span>
+              {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Następna</a>
+              {% endif %}
+            </span>
+          </div>
+        {% endif %}
+      {% endblock %}
+    </body>
+</html>

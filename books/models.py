@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text='Enter a book genre')
@@ -38,3 +40,22 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField(max_length=5000)
+    created = models.DateTimeField(auto_now_add=True)
+    approved_comment = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('created',)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return f'Comment by {self.name} on {self.post}'

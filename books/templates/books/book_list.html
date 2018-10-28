@@ -1,0 +1,16 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+  {% for book in books %}
+    <div class="book">
+      <h1><a href="">{{ book.title }}</a></h1>
+      <h2><a href="">{{ book.author }}</a></h2>
+      <h2><a href="{% url 'books/book_details' pk=post.pk %}">Comments:
+        {{ post.comments.count }}</a></h2>
+
+      <p>{{ book.text|linebreaksbr }}</p>
+
+    </div>
+
+  {% endfor %}
+{% endblock %}
