@@ -14,3 +14,6 @@ class BookListView(ListView):
 
 class AboutPageView(TemplateView):
     template_name = "books/about.html"
+
+def add_comment_to_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
