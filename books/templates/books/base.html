@@ -5,6 +5,10 @@
     {% block title %}<title>Moje książki</title>{% endblock %}
   </head>
   <body>
+    <div class="page-header">
+
+      <h1><a href="/">Moje książki</a></h1>
+    </div>
     {% block sidebare %}
       <ul>
         <li><a href="{% url 'books' %}">Home</a></li>
@@ -13,26 +17,14 @@
         <li><a href="{% url 'about' %}">O mnie</a></li>
       </ul>
     {% endblock %}
+
+    <h3><a href="{% url 'book_new' %}">Dodaj nową książkę</a></h3>
+
+
     {% block content %}
 
      {% endblock %}
 
-     {% block pagination %}
-        {% if is_paginted %}
-          <div class="pagination">
-            <span class="page-links">
-              {% if page_obj.has_previous  %}
-                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Poprzednia</a>
-              {% endif %}
-                <span class="page-current">
-                  <p>Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.</p>
-                </span>
-              {% if page_obj.has_next %}
-                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Następna</a>
-              {% endif %}
-            </span>
-          </div>
-        {% endif %}
-      {% endblock %}
+    
     </body>
 </html>

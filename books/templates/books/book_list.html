@@ -1,5 +1,6 @@
 {% extends 'books/base.html' %}
 
+
 {% block content %}
   {% for book in books %}
     <div class="book">
@@ -9,9 +10,8 @@
       <p><a href="{% url 'book_detail' pk=book.pk %}">Comments:
         {{ book.comments.count }}</a></p>
 
-
-
     </div>
-
   {% endfor %}
+
+  {% include 'books/pagination.html' with page=page_obj %}
 {% endblock %}
