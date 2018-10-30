@@ -3,15 +3,22 @@ from django.views.generic import DetailView, ListView, TemplateView
 from .forms import BookForm
 from django.core.paginator import Paginator
 
-from .models import Book, Author, Genre
+from .models import Book, Author, Genre, Author
 
 class BookDetailView(DetailView):
     model = Book
+
+class AuthorDetailView(DetailView):
+    model = Author
 
 class BookListView(ListView):
     template_name = 'books/book_list.html'
     queryset = Book.objects.all()
     context_object_name = 'books'
+    paginate_by = 2
+
+class AuthorListView(ListView):
+    model = Author 
     paginate_by = 2
 
 class AboutPageView(TemplateView):

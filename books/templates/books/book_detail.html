@@ -1,5 +1,5 @@
 {% extends "books/base.html" %}
-
+{% load static %}
 
 {% block content %}
   <h1>Tytuł: {{ book.title }}</h1>
@@ -8,6 +8,11 @@
   <p><strong>Opis:</strong> {{ book.text }}</p>
   <p><strong>Gatunek:</strong> {% for genre in book.genre.all %}
      {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>Język:</strong> {% for language in book.language.all %}
+     {{ language }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+     <div style="margin-left:20px;margin-top:20px">
+
 
 <hr>
 {% for comment in post.comments.all %}
@@ -17,7 +22,8 @@
     <p>{{ comment.body|linebreaks }}</p>
   </div>
 {% empty %}
-  <p>No comments here yet: </p>
+  <p>Brak komentarzy</p>
 {% endfor %}
 
 {% endblock %}
+</div>

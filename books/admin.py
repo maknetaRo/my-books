@@ -1,5 +1,5 @@
 from django.contrib import admin
-from books.models import Genre, Book, Author, Comment
+from books.models import Genre, Book, Author, Comment, Language
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
@@ -10,9 +10,10 @@ admin.site.register(Author, AuthorAdmin)
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_genre')
+    list_display = ('title', 'author', 'display_genre', 'display_language')
 
 admin.site.register(Genre)
+admin.site.register(Language)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

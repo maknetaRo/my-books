@@ -1,0 +1,18 @@
+{% load static %}
+
+{% block content %}
+  <h1>Author: {{ book.author }}</h1>
+ {% for book in books %}
+  <h3><strong>Tytuł:</strong> {{ book.title }}</h3>
+  <p><strong>Opis:</strong> {{ book.text }}</p>
+  <p><strong>Gatunek:</strong> {% for genre in book.genre.all %}
+     {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>Język:</strong> {% for language in book.language.all %}
+     {{ language }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+ {% endfor %}
+
+
+
+
+{% endblock %}
+</div>
