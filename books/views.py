@@ -17,8 +17,15 @@ class BookListView(ListView):
     context_object_name = 'books'
     paginate_by = 2
 
+class TitleListView(ListView):
+    template_name = 'books/title_list.html'
+    queryset = Book.objects.all()
+    context_object_name = 'books'
+    paginate_by = 2
+
+
 class AuthorListView(ListView):
-    model = Author 
+    model = Author
     paginate_by = 2
 
 class AboutPageView(TemplateView):
