@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountConfig',
     'books',
 ]
 
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'my_books.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,6 +122,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Login and log out files
-LOGIN_REDIRECT_URL = 'account/dashboard'
-LOGIN_URL = 'account/registration/login'
-LOGOUT_URL = 'account/registration/logout'

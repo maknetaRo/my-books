@@ -11,4 +11,9 @@ urlpatterns = [
         path('titles/', TitleListView.as_view(), name='titles'),
         path('authors/', AuthorListView.as_view(), name='authors'),
         path('author/<int:pk>/', AuthorDetailView.as_view(), name='author_detail'),
+        path('login/', views.user_login, name='login'),
+        path('logout/', views.user_logout, name='logout'),
+        path('register', views.register_user, name='register'),
+        path('edit_profile/', views.edit_profile, name='edit_profile'),
+        path('change_password/', views.change_password, name='change_password')
 ]
