@@ -12,43 +12,47 @@
     {% block title %}<title>Moje książki</title>{% endblock %}
   </head>
   <body>
-    <header>
-      <span class="logo">Moje książki</span>
-        {% if request.user.is_authenticated %}
-          <ul class="menu">
-            <li {% if section == "dashboard" %}class="selected"{% endif %}>
-              <a href="{% url "dashboard" %}">My dahsboard</a>
-            </li>
-            <li {% if section == "images" %}class="selected"{% endif %}>
-            <a href="#">Images</a>
-            </li>
-            <li {% if section == "people" %}class="selected"{% endif %}>
-              <a href="#">People</a>
-            </li>
-          </ul>
-        {% endif %}
-      <span class="user">
-        {% if request.user.Is_authenticated %}
-          Hello {{ request.user.first_name }}
-          <a href="{% url "logout" %}">Logout</a>
-        {% else %}
-          <a href="{% url "login" %}">Logi-in</a>
-        {% endif %}
-      </span>
-    </header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="{% url 'books' %}">Strona główna</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'titles' %}">Tytuły książek</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'authors' %}">Autorzy</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'about' %}">O mnie</a>
+        </li>
 
-
-
-    {% block sidebare %}
-      <ul>
-        <li><a href="{% url 'books' %}">Home</a></li>
-        <li><a href="{% url 'titles' %}">Tytuły książek</a></li>
-        <li><a href="{% url 'authors' %}">Autorzy</a></li>
-        <li><a href="{% url 'about' %}">O mnie</a></li>
       </ul>
-    {% endblock %}
+    </div>
+  <div class="collapse navbar-collapse" id="navbarSupprotedContent">
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
 
-    <h3><a href="{% url 'book_new' %}">Dodaj nową książkę</a></h3>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+
+     {% endif %}
+    </ul>
+   </div>
+ </nav>
+ <div class="jumbotron jumbotron-fluid">
+<div class="container">
+ <h1 class="display-4">Moje książki</h1>
+ <p class="lead">Katalog książek, które posiadam, które przeczytałam lub tych które chcę przeczytać.</p>
+</div>
+</div>
 
 
     {% block content %}

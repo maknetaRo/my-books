@@ -14,7 +14,7 @@
   {% endif %}
 
   <div class="login-form">
-    <form class="" action="{% url 'login' %}" method="post">
+    <form class="" action="{% url 'account/registration/login' %}" method="post">
       {{ form.as_p }}
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}">
