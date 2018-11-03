@@ -3,6 +3,7 @@ from django.views.generic import DetailView, ListView, TemplateView
 from .forms import BookForm
 from django.core.paginator import Paginator
 
+
 from .models import Book, Author, Genre, Author
 
 class BookDetailView(DetailView):

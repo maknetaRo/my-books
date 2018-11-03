@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account.apps.AccountConfig',
     'books',
 ]
 
@@ -120,3 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Login and log out files
+LOGIN_REDIRECT_URL = 'account/dashboard'
+LOGIN_URL = 'account/registration/login'
+LOGOUT_URL = 'account/registration/logout'

@@ -12,10 +12,33 @@
     {% block title %}<title>Moje książki</title>{% endblock %}
   </head>
   <body>
-    <div class="page-header">
+    <header>
+      <span class="logo">Moje książki</span>
+        {% if request.user.is_authenticated %}
+          <ul class="menu">
+            <li {% if section == "dashboard" %}class="selected"{% endif %}>
+              <a href="{% url "dashboard" %}">My dahsboard</a>
+            </li>
+            <li {% if section == "images" %}class="selected"{% endif %}>
+            <a href="#">Images</a>
+            </li>
+            <li {% if section == "people" %}class="selected"{% endif %}>
+              <a href="#">People</a>
+            </li>
+          </ul>
+        {% endif %}
+      <span class="user">
+        {% if request.user.Is_authenticated %}
+          Hello {{ request.user.first_name }}
+          <a href="{% url "logout" %}">Logout</a>
+        {% else %}
+          <a href="{% url "login" %}">Logi-in</a>
+        {% endif %}
+      </span>
+    </header>
 
-      <h1><a href="/">Moje książki</a></h1>
-    </div>
+
+
     {% block sidebare %}
       <ul>
         <li><a href="{% url 'books' %}">Home</a></li>
