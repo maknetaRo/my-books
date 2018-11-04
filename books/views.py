@@ -117,10 +117,23 @@ def book_new(request):
         form = BookForm(request.POST)
         if form.is_valid():
             book = form.save(commit=False)
+
             book.save()
             return redirect('book_detail', pk=book.pk)
     else:
         form = BookForm()
+    return render(request, 'books/book_edit.html', {'form': form})
+
+def book_edit(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            return redirect('book_detail', pk=book.pk)
+    else:
+        form = BookForm(instance=book)
     return render(request, 'books/book_edit.html', {'form': form})
 
 
