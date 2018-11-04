@@ -1,8 +1,8 @@
 {% extends 'books/base.html' %}
 
 {% block content %}
-<h2 class="text-center">Login</h2>
-<div class="col-md-6 offset-md-3">
+<h2 class = "text-center">Login</h2>
+<div class = "col-md-6 offset-md-3" >
   {% if form.errors %}
     <p>
       Your username and password didn't match.
@@ -11,9 +11,8 @@
   {% else %}
     <p>Please, use the following form to log-in:</p>
   {% endif %}
-  
 
-	<form method="POST">
+	<form method = "POST">
 		{% csrf_token %}
 	  <div class="form-group">
 

@@ -12,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 def home(request):
     return render(request, 'books/book_list.html', {})
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -27,10 +28,12 @@ def user_login(request):
     else:
         return render(request, 'books/registration/login.html', {})
 
+
 def user_logout(request):
     logout(request)
     messages.success(request, ("You Have Been Logged Out..."))
     return redirect('books')
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -38,7 +41,7 @@ def register_user(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            passwowrd = form.cleaned_data['password']
+            password = form.cleaned_data['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
             messages.success(request, ('You Have Registered...'))
@@ -48,6 +51,7 @@ def register_user(request):
     context = {'form': form}
     return render(request, 'books/registration/register.html', context)
 
+
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
@@ -55,11 +59,12 @@ def edit_profile(request):
             form.save()
 
             messages.success(request, ('You Have Edited Your Profile ...'))
-            return redirec('books')
+            return redirect('books')
     else:
         form = EditProfileForm(instance=request.user)
     context = {'form': form}
     return render(request, 'books/registration/edit_profile.html', context)
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -79,14 +84,17 @@ def change_password(request):
 class BookDetailView(DetailView):
     model = Book
 
+
 class AuthorDetailView(DetailView):
     model = Author
+
 
 class BookListView(ListView):
     template_name = 'books/book_list.html'
     queryset = Book.objects.all()
     context_object_name = 'books'
     paginate_by = 2
+
 
 class TitleListView(ListView):
     template_name = 'books/title_list.html'
@@ -99,8 +107,10 @@ class AuthorListView(ListView):
     model = Author
     paginate_by = 2
 
+
 class AboutPageView(TemplateView):
     template_name = "books/about.html"
+
 
 def book_new(request):
     if request.method == 'POST':
@@ -112,6 +122,7 @@ def book_new(request):
     else:
         form = BookForm()
     return render(request, 'books/book_edit.html', {'form': form})
+
 
 def add_comment_to_book(request, pk):
     book = get_object_or_404(Book, pk=pk)

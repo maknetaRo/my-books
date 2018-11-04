@@ -122,3 +122,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Login and log out files
+LOGIN_REDIRECT_URL = 'books:books'
+LOGIN_URL = 'books:login'
+LOGOUT_REDIRECT_URL = 'books:logout'

@@ -3,9 +3,15 @@ from .models import Comment, Book
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
+
 class EditProfileForm(UserChangeForm):
-    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type':'hidden'}))
-    email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
+    password = forms.CharField(
+        label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+    email = forms.EmailField(label="", widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'First Name'}))
+    first_name = forms.CharField(
+        label="", max_length=100, widget=forms.TextInput(
+        attrs={'class':'form-control', 'placeholder':'First Name'}))
 
     class Meta:
         model = User
@@ -21,15 +27,17 @@ class EditProfileForm(UserChangeForm):
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control','placehoder':'Email Address'}))
-    first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
+    email = forms.EmailField(label="", widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placehoder': 'Email Address'}))
+    first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'First Name'}))
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email', 'password1', 'password2')
 
     def __init__(self, *args, **kwargs):
-        super(SingUpForm, self).__init__(*args, **kwargs)
+        super(SignUpForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['placeholder'] = 'User Name'
