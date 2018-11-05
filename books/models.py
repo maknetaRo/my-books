@@ -17,7 +17,7 @@ class Language(models.Model):
 
 
 class Book(models.Model):
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, blank=True)
+    author = models.ManyToManyField('Author')
     title = models.CharField(max_length=200)
     text = models.TextField(max_length=50000)
     genre = models.ManyToManyField('Genre', help_text='Select a genre for a book')
@@ -25,6 +25,9 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_authors(self):
+        return ', '.join([str(a) for a in self.author.all()])
 
     def get_absolute_url(self):
         return reverse('book_detail', args=[str(self.id)])

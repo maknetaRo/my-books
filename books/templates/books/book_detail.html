@@ -14,7 +14,19 @@
 
      <div style="margin-left:20px;margin-top:20px">
 
+       <h1>Tytuł: {{ book.title }}</h1>
 
+       <p><strong>Autor: </strong><a href="{% url 'author_detail' %}">
+         {% for author in book.author.all %} {{ book.author }}
+         {% if not forloop.last %}, {% endif %}{% endfor %}</a></p>
+       <p><strong>Opis: </strong> {{ book.text }}</p>
+       <p><strong>Gatunek: </strong> {% for genre in book.genre.all %}
+        {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+       <p><strong>Język: </strong> {% for language in book.language.all %}
+        {{ language }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+
+<div style="margin-left: 20px;margin-top:20px">
 <hr>
 {% for comment in post.comments.all %}
   <div class="comment">

@@ -6,7 +6,11 @@
   {% for book in books %}
     <div class="book">
       <h1><a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a></h1>
-      <h2><a href="">{{ book.author }}</a></h2>
+
+        {% for author in book.author.all %}
+          <h4><a href="">{{ book.author }}</a></h4>
+        {% endfor %}
+
         <p>{{ book.text|linebreaksbr }}</p>
       <p><a href="{% url 'book_detail' pk=book.pk %}">Comments:
         {{ book.comments.count }}</a></p>
