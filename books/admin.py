@@ -13,7 +13,7 @@ admin.site.register(Author, AuthorAdmin)
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'get_authors', 'display_genre', 'display_language')
+    list_display = ('title', 'author', 'display_genre', 'display_language')
 
 
 admin.site.register(Genre)
