@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment, Book
+from .models import Comment, Book, Author
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -55,10 +55,6 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
-class BookForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = ('title', 'author', 'text', 'genre', 'language')
 
 
 class CommentForm(forms.ModelForm):

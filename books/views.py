@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, TemplateView
-from .forms import BookForm
 from django.core.paginator import Paginator
 from .models import Book, Author, Genre, Author
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from .forms import SignUpForm, EditProfileForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -111,30 +112,30 @@ class AuthorListView(ListView):
 class AboutPageView(TemplateView):
     template_name = "books/about.html"
 
+class AuthorCreate(CreateView):
+    model = Author
+    fields = '__all__'
+    initial = {'date_of_death': '07/11/2018'}
 
-def book_new(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        if form.is_valid():
-            book = form.save(commit=False)
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
 
-            book.save()
-            return redirect('book_detail', pk=book.pk)
-    else:
-        form = BookForm()
-    return render(request, 'books/book_edit.html', {'form': form})
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
 
-def book_edit(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    if request.method == "POST":
-        form = BookForm(request.POST, instance=book)
-        if form.is_valid():
-            book = form.save(commit=False)
-            book.save()
-            return redirect('book_detail', pk=book.pk)
-    else:
-        form = BookForm(instance=book)
-    return render(request, 'books/book_edit.html', {'form': form})
+class BookCreate(CreateView):
+    model = Book
+    fields = '__all__'
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['author', 'title', 'text', 'genre', 'language']
+
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('authors')
 
 
 def add_comment_to_book(request, pk):

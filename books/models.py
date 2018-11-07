@@ -17,7 +17,7 @@ class Language(models.Model):
 
 
 class Book(models.Model):
-    author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True)    
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)
     text = models.TextField(max_length=50000)
     genre = models.ManyToManyField('Genre', help_text='Select a genre for a book')
@@ -50,7 +50,7 @@ class Author(models.Model):
         ordering = ['last_name', 'first_name']
 
     def get_absolute_url(self):
-        return reverse('author_detail', args=[str(self.id)])
+        return reverse('author_detail', kwargs={'pk' : self.pk})
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'

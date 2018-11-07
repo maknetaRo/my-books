@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block content %}
+<a class="btn btn-default" href="{% url 'author_update' pk=author.id %}"><span
+  class="glyphicon glyphicon-pencil"></span></a>
   <h1>Autor: {{ author }}</h1>
+  <p><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
+  <p><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
   <h2>Biografia: {{ author.description }}</h2>
 
   <!-- ta część nie działa, muszę to napisać jakoś inaczej -->
