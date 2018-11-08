@@ -2,7 +2,7 @@
 
 
 {% block content %}
-  <h1>Nowa książka</h1>
+  <h2>Nowa książka</h2>
   <form class="post-form" method="POST">{% csrf_token %}
     {{ form.as_p }}
     <button type="submit" name="button">Zapisz</button>
