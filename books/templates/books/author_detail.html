@@ -9,10 +9,10 @@
   <h2>Biografia: {{ author.description }}</h2>
 
   <!-- ta część nie działa, muszę to napisać jakoś inaczej -->
-  {% for book in author.book.all %}
-  <h3> {{ book.title }}</h3>
-  <p>{{ book.text }}</p>
-  {% endfor %}
+    {% for book in author.book.all %}
+    <h3> {{ book.title }}</h3>
+    <p>{{ book.text }}</p>
+    {% endfor %}
 <a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
 {% endblock %}
 </div>

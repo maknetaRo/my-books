@@ -1,14 +1,22 @@
 {% extends 'books/base.html' %}
 
 {% block content %}
-  <h2>Nowy autor</h2>
-  <form class="post-form" method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_p }}
-    </table>
-    <input type="submit" value="Zapisz się" class="btn btn-outline-secondary">
+  <h2 class='text-center'>Nowy autor</h2>
+  <div class="col-md-6 offset-md-3">
+    <form  method="POST" action="{% url 'author_create' %}">
+      {% csrf_token %}
+      {% if form.errors %}
+      <p>Your Form has Errors...</p>
+            {% for field in form %}
+              {% if field.errors %}
+                {{ field.errors }}
+              {% endif %}
+            {% endfor %}
+      {% endif %}
+        {{ form.as_p }}
 
-  </form>
+        <input type="submit" value="Edytuj" class="btn btn-outline-secondary">
+    </form>
+  </div<
 
 {% endblock %}

@@ -2,11 +2,27 @@
 {% load static %}
 
 {% block content %}
-  <h2>Nowa książka</h2>
-  <form class="post-form" method="POST">{% csrf_token %}
+  <h2 class='text-center'>Nowa książka</h2>
+  <div class="col-md-6 offset-md-3">
+  <form action="{% url 'book_new' %}" method="POST">
+
+    {% csrf_token %}
+    {% if form.errors %}
+    <p>Your Form has Errors...</p>
+            {% for field in form %}
+            	{% if field.errors %}
+            		{{ field.errors }}
+
+            	{% endif %}
+
+            {% endfor %}
+          </div>
+
+		{% endif %}
     {{ form.as_p }}
     <button type="submit" name="button" class="btn btn-outline-secondary">Zapisz</button>
 
   </form>
+</div>
 
 {% endblock %}
