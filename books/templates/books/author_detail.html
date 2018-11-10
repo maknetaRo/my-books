@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block content %}
-<a class="btn btn-default" href="{% url 'author_update' pk=author.id %}"><span
-  class="glyphicon glyphicon-pencil"></span></a>
+
   <h1>Autor: {{ author }}</h1>
   <p><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
   <p><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
@@ -14,6 +13,6 @@
   <h3> {{ book.title }}</h3>
   <p>{{ book.text }}</p>
   {% endfor %}
-
+<a class="btn btn-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
 {% endblock %}
 </div>

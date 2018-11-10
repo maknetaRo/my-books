@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, TemplateView
 from django.core.paginator import Paginator
-from .models import Book, Author, Genre, Author
+from .models import Book, Author, Genre, Author, Comment
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from .forms import SignUpForm, EditProfileForm
+from .forms import SignUpForm, EditProfileForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -85,6 +85,27 @@ def change_password(request):
 class BookDetailView(DetailView):
     model = Book
 
+def add_comment_to_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    comments = post.comments.filter(active=True)
+
+    new_comment = None
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(request,
+                 'books/book_detail.html',
+                 {'post' : post,
+                 'comments': comments,
+                 'new_comment': new_comment,
+                 'comment_form': comment_form})
+
 
 class AuthorDetailView(DetailView):
     model = Author
@@ -136,7 +157,3 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('authors')
-
-
-def add_comment_to_book(request, pk):
-    book = get_object_or_404(Book, pk=pk)

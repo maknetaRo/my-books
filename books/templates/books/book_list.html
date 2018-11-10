@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block content %}
-<h3><a href="{% url 'book_new' %}">Dodaj nową książkę</a></h3>
-<h3><a href="{% url 'author_create' %}">Dodaj nowego autora</a></h3>
+
   {% for book in books %}
     <div class="book">
-      <h2><a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a></h2>
+      <h1><a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a></h1>
 
       <h4><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></h4>
 

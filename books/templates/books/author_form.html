@@ -5,9 +5,9 @@
   <form class="post-form" method="POST">
     {% csrf_token %}
     <table>
-      {{ form.as_table }}
+      {{ form.as_p }}
     </table>
-    <input type="submit" value="Zapisz się">
+    <input type="submit" value="Zapisz się" class="btn btn-secondary">
 
   </form>
 

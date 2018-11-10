@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-  <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+
          <h1>Tytuł: {{ book.title }}</h1>
 
        <p><strong>Autor: </strong><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></p>
@@ -14,6 +15,7 @@
 
 
 <div style="margin-left: 20px;margin-top:20px">
+    <a class="btn btn-secondary" href="{% url 'book_edit' pk=book.pk %}">Edytuj</span></a>
 <hr>
 {% for comment in post.comments.all %}
   <div class="comment">
@@ -25,5 +27,16 @@
   <p>Brak komentarzy</p>
 {% endfor %}
 
+{% if new_comment %}
+  <h2>Twój komentarz został dodany.</h2>
+{% else %}
+  <h2>Dodaj nowy komentarz</h2>
+  <form  action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Dodaj komentarz"></p>
+
+  </form>
+{% endif %}
 {% endblock %}
 </div>
