@@ -13,6 +13,6 @@
   <h3> {{ book.title }}</h3>
   <p>{{ book.text }}</p>
   {% endfor %}
-<a class="btn btn-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
+<a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
 {% endblock %}
 </div>

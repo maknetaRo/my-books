@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 from django.core.paginator import Paginator
 from .models import Book, Author, Genre, Author, Comment
@@ -8,6 +8,8 @@ from .forms import SignUpForm, EditProfileForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
 
 
 def home(request):
@@ -87,24 +89,31 @@ class BookDetailView(DetailView):
 
 def add_comment_to_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    comments = post.comments.filter(active=True)
-
-    new_comment = None
 
     if request.method == "POST":
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.post = post
-            new_comment.save()
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.book = book
+            comment.save()
+            return redirect('book_detail', pk=book.pk)
     else:
-        comment_form = CommentForm()
+        form = CommentForm()
     return render(request,
-                 'books/book_detail.html',
-                 {'post' : post,
-                 'comments': comments,
-                 'new_comment': new_comment,
-                 'comment_form': comment_form})
+                 'books/add_comment_to_book.html',
+                 {'form':form})
+
+@login_required
+def comment_approve(requeste, pk):
+    commnet = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('book_detail', pk=comment.book.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('book_detail', pk=comment.book.pk)
 
 
 class AuthorDetailView(DetailView):

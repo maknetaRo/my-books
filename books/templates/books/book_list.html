@@ -12,7 +12,7 @@
 
         <p>{{ book.text|linebreaksbr }}</p>
       <p><a href="{% url 'book_detail' pk=book.pk %}">Comments:
-        {{ book.comments.count }}</a></p>
+        {{ book.approved_comments.count }}</a></p>
 
     </div>
   {% endfor %}

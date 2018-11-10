@@ -22,4 +22,7 @@ urlpatterns = [
     path('author/create/', views.AuthorCreate.as_view(), name='author_create'),
     path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author_update'),
     path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author_delete'),
+    path('book/<int:pk>/comment/', views.add_comment_to_book, name='add_comment_to_book'),
+    path('comment/<int:pk>/approve/', views.comment_approve, name='commnet_approve'),
+    path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
 ]

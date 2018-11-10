@@ -39,6 +39,9 @@ class Book(models.Model):
 
     display_language.short_description = 'Język'
 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -72,4 +75,4 @@ class Comment(models.Model):
         self.save()
 
     def __str__(self):
-        return f'Comment by {self.name} on {self.post}'
+        return self.body
