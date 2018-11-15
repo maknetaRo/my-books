@@ -65,7 +65,7 @@ class Comment(models.Model):
     email = models.EmailField()
     body = models.TextField(max_length=5000)
     created = models.DateTimeField(auto_now_add=True)
-    approved_comment = models.BooleanField(default=True)
+    approved_comment = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('created',)
