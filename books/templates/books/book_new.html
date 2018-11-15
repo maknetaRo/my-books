@@ -4,7 +4,7 @@
 {% block content %}
   <h2 class='text-center'>Nowa książka</h2>
   <div class="col-md-6 offset-md-3">
-  <form action="{% url 'book_new' %}" method="POST">
+  <form action="{% url 'book_new' book.pk %}" method="POST">
 
     {% csrf_token %}
     {% if form.errors %}
