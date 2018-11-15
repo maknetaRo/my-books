@@ -62,7 +62,7 @@
 <header>
 
        <img src="{% static 'img/blur-book.png' %}" alt="blur books" class="header-image">
-       <h1 class="display-4">Moje książki</h1>
+       <h1><a class="display-4" href="{% url 'books' %}">Moje książki</a></h1>
        <p class="lead">Katalog książek, które posiadam, które przeczytałam lub tych, które chcę przeczytać.</p>
 
 </header>
@@ -84,7 +84,7 @@
          <li><a href="{% url 'book_new' %}">Dodaj nową książkę</a></li>
          <li><a href="{% url 'author_create' %}">Dodaj nowego autora</a></li>
       {% endif %}
-      
+
        </ul>
     {% endblock %}
       {% block content %}{% endblock %}

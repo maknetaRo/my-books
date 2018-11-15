@@ -19,7 +19,8 @@
     {% endfor %}
   </ul>
 {% if user.is_authenticated %}
-<a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
+<p><a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a></p>
+<p><a class="btn btn-outline-secondary" href="{% url 'author_delete' author.pk %}">Usuń</a> </p>
 {% endif %}
 
 {% endblock %}
