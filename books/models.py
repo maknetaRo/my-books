@@ -60,12 +60,12 @@ class Author(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='comments')
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField(max_length=5000)
     created = models.DateTimeField(auto_now_add=True)
-    approved_comment = models.BooleanField(default=False)
+    approved_comment = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('created',)

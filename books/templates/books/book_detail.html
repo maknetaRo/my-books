@@ -14,8 +14,9 @@
         {{ language }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
 
-
+{% if user.is_authenticated %}
     <p><a class="btn btn-outline-secondary" href="{% url 'book_edit' pk=book.pk %}">Edytuj</span></a></p>
+{% endif %}
 <hr>
 <p><a class="btn btn-outline-secondary" href="{% url 'add_comment_to_book' pk=book.pk %}">Dodaj komentarz</a></p>
 

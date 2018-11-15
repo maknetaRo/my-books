@@ -22,6 +22,6 @@ admin.site.register(Language)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'post', 'created', 'approved_comment')
+    list_display = ('name', 'email', 'book', 'created', 'approved_comment')
     list_filter = ('approved_comment', 'created')
     search_fields = ('name', 'email', 'body')

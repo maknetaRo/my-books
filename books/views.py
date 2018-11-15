@@ -124,19 +124,20 @@ class BookListView(ListView):
     template_name = 'books/book_list.html'
     queryset = Book.objects.all()
     context_object_name = 'books'
-    paginate_by = 2
+    paginate_by = 5
 
 
 class TitleListView(ListView):
     template_name = 'books/title_list.html'
     queryset = Book.objects.all()
     context_object_name = 'books'
-    paginate_by = 2
+    paginate_by = 5
 
 
 class AuthorListView(ListView):
+    template_name = "books/author_list.html"
     model = Author
-    paginate_by = 2
+    paginate_by = 5
 
 
 class AboutPageView(TemplateView):
@@ -145,11 +146,12 @@ class AboutPageView(TemplateView):
 class AuthorCreate(CreateView):
     model = Author
     fields = '__all__'
-    initial = {'date_of_death': '07/11/2018'}
+    template_name = 'books/author_create.html'
 
 class AuthorUpdate(UpdateView):
     model = Author
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death', 'description']
+    template_name = 'books/author_update.html'
 
 class AuthorDelete(DeleteView):
     model = Author
@@ -158,11 +160,13 @@ class AuthorDelete(DeleteView):
 class BookCreate(CreateView):
     model = Book
     fields = '__all__'
+    template_name = 'books/book_new.html'
 
 class BookUpdate(UpdateView):
     model = Book
     fields = ['author', 'title', 'text', 'genre', 'language']
+    template_name = 'books/book_edit.html'
 
 class BookDelete(DeleteView):
     model = Book
-    success_url = reverse_lazy('authors')
+    success_url = reverse_lazy('books')

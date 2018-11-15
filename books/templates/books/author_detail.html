@@ -6,13 +6,21 @@
   <h1>Autor: {{ author }}</h1>
   <p><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
   <p><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
-  <h2>Biografia: {{ author.description }}</h2>
+  <h2>Biografia:</h2>
+  <p> {{ author.description }} </p>
 
   <!-- ta część nie działa, muszę to napisać jakoś inaczej -->
-    {% for book in author.book.all %}
-    <h3> {{ book.title }}</h3>
-    <p>{{ book.text }}</p>
+  <ul>
+    {% for book in author.books %}
+      <li><h3> {{ book.title }}</h3></li>
+          <p>{{ book.text }}</p>
+    {% empty %}
+      <li>Brak książek tego autora</li>
     {% endfor %}
+  </ul>
+{% if user.is_authenticated %}
 <a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a>
+{% endif %}
+
 {% endblock %}
 </div>
