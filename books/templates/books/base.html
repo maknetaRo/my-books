@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Radley" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
      <link rel="stylesheet" href="{% static 'css/page.css' %}">
+     <link rel="stylesheet" href="{% static 'img/authors' %}">
+     <link rel="stylesheet" href="{% static 'img/books' %}">
+
     {% block title %}<title>Moje książki</title>{% endblock %}
   </head>
   <body>
@@ -87,9 +90,9 @@
 
        </ul>
     {% endblock %}
-      {% block content %}{% endblock %}
-
-
+      <div class="main_page">
+        {% block content %}{% endblock %}
+      </div>
 
      </div>
 </section>

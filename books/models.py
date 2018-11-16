@@ -22,6 +22,8 @@ class Book(models.Model):
     text = models.TextField(max_length=50000)
     genre = models.ManyToManyField('Genre', help_text='Select a genre for a book')
     language = models.ManyToManyField('Language')
+    image = models.ImageField(upload_to='static/img/books', blank=True)
+
 
     def __str__(self):
         return self.title
@@ -48,6 +50,7 @@ class Author(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
     description = models.TextField(max_length=50000, null=True, blank=True)
+    image = models.ImageField(upload_to='static/img/authors', blank=True)
 
     class Meta:
         ordering = ['last_name', 'first_name']

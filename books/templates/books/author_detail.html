@@ -1,8 +1,11 @@
 {% extends 'books/base.html' %}
 {% load static %}
 
+
 {% block content %}
 
+ <img src="{% if author.image %}{{ author.image.url }}{% else %}
+ {% static "img/authors/no_image.png" %}{% endif %}">
   <h1>Autor: {{ author }}</h1>
   <p><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
   <p><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>

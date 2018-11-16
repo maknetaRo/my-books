@@ -7,6 +7,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 p, li {
   font-family: 'Space Mono', monospace;
+
 }
 body {
   min-height: 90vh;
@@ -44,17 +45,23 @@ a, a:hover {
   text-decoration: none;
 }
 .container {
+  position: fixed;
   margin-left: 10%;
-  margin-right: 0;
+  margin-right: 25%;
 }
 .sidebar-nav {
   width:25%;
   right: 0;
-
   position: absolute;
   list-style: none;
   padding: 0;
-  text-align: left;
+  height: 100%;
+  margin-bottom: 0;
+  background: #DCDCDC;
+}
+.main_page {
+  width: 70%;
+  position: absolute;
 }
 .footer {
   margin-bottom: 0;

@@ -105,7 +105,7 @@ def add_comment_to_book(request, pk):
 
 @login_required
 def comment_approve(requeste, pk):
-    commnet = get_object_or_404(Comment, pk=pk)
+    comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('book_detail', pk=comment.book.pk)
 
@@ -150,7 +150,7 @@ class AuthorCreate(CreateView):
 
 class AuthorUpdate(UpdateView):
     model = Author
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death', 'description']
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death', 'description', 'image']
     template_name = 'books/author_update.html'
 
 class AuthorDelete(DeleteView):
@@ -164,7 +164,7 @@ class BookCreate(CreateView):
 
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['author', 'title', 'text', 'genre', 'language']
+    fields = ['author', 'title', 'text', 'genre', 'language', 'image']
     template_name = 'books/book_edit.html'
 
 class BookDelete(DeleteView):
