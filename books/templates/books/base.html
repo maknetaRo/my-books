@@ -1,5 +1,8 @@
-<!DOCTYPE html>
 {% load static %}
+
+
+<!DOCTYPE html>
+
 <html lang="en" dir="ltr">
   <head>
     <!-- Required meta tags -->
@@ -8,12 +11,14 @@
 
     <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Radley" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
      <link rel="stylesheet" href="{% static 'css/page.css' %}">
-     <link rel="stylesheet" href="{% static 'img/authors' %}">
-     <link rel="stylesheet" href="{% static 'img/books' %}">
+
 
     {% block title %}<title>Moje książki</title>{% endblock %}
   </head>
@@ -32,7 +37,7 @@
           <a class="nav-link" href="{% url 'authors' %}">Autorzy</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'about' %}">O mnie</a>
+          <a class="nav-link" href="{% url 'about' %}">O moich książkach</a>
         </li>
 
       </ul>

@@ -6,18 +6,30 @@
   {% if books %}
 
     {% for book in books %}
-      <div class="book">
-        <h1><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h1>
+    <div class="card">
+      <div class="card-body">
+        <img class="books" src="/media/{{ book.image }}" alt="">
+        <div class="row">
+          <div class="col-sm-9">
+            <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+          </div>
 
-        <h4><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></h4>
+        </div>
+        <div class="row">
+          <h4 class="desc"><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></h4>
+        </div>
+        <div class="row">
+            <p class="desc">{{ book.text|linebreaksbr }}</p>
+        </div>
 
-
-          <p>{{ book.text|linebreaksbr }}</p>
-        <p><a href="{% url 'book_detail' pk=book.pk %}">Comments:
+    </div>
+    <hr>
+        <p class="comment"><a href="{% url 'book_detail' pk=book.pk %}">Comments:
           {{ book.approved_comments.count }}</a></p>
+  </div>
 
-      </div>
-    {% endfor %}
+
+  {% endfor %}
   {% else %}
     <p>Brak książek</p>
   {% endif %}

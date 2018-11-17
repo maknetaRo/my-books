@@ -1,3 +1,8 @@
+body {
+  margin-bottom: 0;
+  margin-right: 0;
+  background: #F5F5DC;
+}
 h1 a, h2 a, h2, h1 {
   color: #c25100;
 
@@ -7,15 +12,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 p, li {
   font-family: 'Space Mono', monospace;
-
 }
-body {
-  min-height: 90vh;
-  min-width: 90vw;
-  margin-bottom: 0;
-  margin-right: 0%;
-
+.card {
+  width: 800px;
+  
+  background: #F5F5DC;
+  border: none;
 }
+.books {
+  width: 150px;
+  float: left;
+}
+.desc {
+  margin-left: 15px;
+}
+
 .header-image {
   position: relative;
   width: 100%;
@@ -26,6 +37,22 @@ body {
 header {
   padding-bottom: 50px;
 }
+
+a, a:hover {
+  color: #696969;
+  text-decoration: none;
+}
+
+.sidebar-nav {
+  width:25%;
+  right: 0;
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  height: 100%;
+  margin-bottom: 0;
+}
+
 .display-4 {
    position: absolute;
    text-align: center;
@@ -39,39 +66,6 @@ header {
   color: white;
   margin-left: 10%;
   top: 70%;
-}
-a, a:hover {
-  color: #696969;
-  text-decoration: none;
-}
-.container {
-  position: fixed;
-  margin-left: 10%;
-  margin-right: 25%;
-}
-.sidebar-nav {
-  width:25%;
-  right: 0;
-  position: absolute;
-  list-style: none;
-  padding: 0;
-  height: 100%;
-  margin-bottom: 0;
-  background: #DCDCDC;
-}
-.main_page {
-  width: 70%;
-  position: absolute;
-}
-.footer {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  margin-top: 50px;
-  padding-top: 20px;
-  background: black;
-  color: white;
-  text-align: center;
-  height: 60px;
 }
 .comment {
   margin: 20px 0px 20px 20px;
