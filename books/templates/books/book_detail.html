@@ -4,18 +4,36 @@
 
 {% block content %}
 
-
+<div class="card">
+  <div class="card-body">
+    <img class="books" src="{% if book.image %}{{ book.image.url }}{% else %}
+     {% static "books/no_image.png" %}{% endif %}">
+    <div class="row">
+      <div class="col-sm-9">
          <h1>Tytuł: {{ book.title }}</h1>
-
-      <img src="{% if book.image %}{{ book.image.url }}{% else %}
-       {% static "books/no_image.png" %}{% endif %}">
-       <p><strong>Autor: </strong><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></p>
-       <p><strong>Opis: </strong> {{ book.text }}</p>
-       <p><strong>Gatunek: </strong> {% for genre in book.genre.all %}
+      </div>
+    </div>
+    <div class="row">
+       <p class="desc"><strong>Autor: </strong><a href="{% url 'author_detail' pk=book.author.id %}">{{ book.author }}</a></p>
+    </div>
+    <div class="row">
+       <p class="desc"><strong>Gatunek: </strong> {% for genre in book.genre.all %}
         {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-       <p><strong>Język: </strong> {% for language in book.language.all %}
+    </div>
+    <div class="row">
+       <p class="desc"><strong>Język: </strong> {% for language in book.language.all %}
         {{ language }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-
+    </div>
+    <div class="row">
+       <p class="desc"><strong>Moja ocena: </strong> {% for stars in book.stars.all %}
+        {{ star }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    </div>
+    <hr>
+    <div class="row">
+       <p class="desc"><strong>Opis: </strong> {{ book.text }}</p>
+    </div>
+  </div>
+</div>
 
         <div class="col-sm-3">
             {% if user.is_authenticated %}
@@ -24,7 +42,7 @@
             {% endif %}
         </div>
 <hr>
-<p><a class="btn btn-outline-secondary" href="{% url 'add_comment_to_book' pk=book.pk %}">Dodaj komentarz</a></p>
+<p class="desc"><a class="btn btn-outline-secondary" href="{% url 'add_comment_to_book' pk=book.pk %}">Dodaj komentarz</a></p>
 
 {% for comment in book.comments.all %}
   {% if user.is_authenticated or comment.approved_comment %}

@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=200, help_text='Enter a book genre')
+    name = models.CharField(max_length=200, help_text='Podaj gatuenk książki')
 
     def __str__(self):
         return self.name
@@ -23,6 +23,7 @@ class Book(models.Model):
     genre = models.ManyToManyField('Genre', help_text='Wybierz gatunek')
     language = models.ManyToManyField('Language')
     image = models.ImageField(upload_to='books', blank=True, null=True)
+    stars = models.IntegerField(default=5)
 
 
     def __str__(self):
@@ -41,6 +42,9 @@ class Book(models.Model):
 
     display_language.short_description = 'Język'
 
+    def display_stars(self):
+        return self.stars
+
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
@@ -51,6 +55,7 @@ class Author(models.Model):
     date_of_death = models.DateField('Died', null=True, blank=True)
     description = models.TextField(max_length=50000, null=True, blank=True)
     image = models.ImageField(upload_to='authors', blank=True, null=True)
+
 
     class Meta:
         ordering = ['last_name', 'first_name']
