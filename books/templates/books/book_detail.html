@@ -6,11 +6,12 @@
 
 <div class="card">
   <div class="card-body">
+    <div>
     <img class="books" src="{% if book.image %}{{ book.image.url }}{% else %}
      {% static "books/no_image.png" %}{% endif %}">
     <div class="row">
       <div class="col-sm-9">
-         <h1>Tytuł: {{ book.title }}</h1>
+         <h2>{{ book.title }}</h2>
       </div>
     </div>
     <div class="row">
@@ -26,8 +27,9 @@
     </div>
     <div class="row">
        <p class="desc"><strong>Moja ocena: </strong> {% for stars in book.stars.all %}
-        {{ star }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        {{ stars }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
     </div>
+  </div>
     <hr>
     <div class="row">
        <p class="desc"><strong>Opis: </strong> {{ book.text }}</p>
@@ -65,4 +67,3 @@
 
 
 {% endblock %}
-</div>

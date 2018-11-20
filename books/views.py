@@ -83,7 +83,6 @@ def change_password(request):
     context = {'form': form}
     return render(request, 'books/registration/change_password.html', context)
 
-
 class BookDetailView(DetailView):
     model = Book
 
@@ -131,13 +130,13 @@ class TitleListView(ListView):
     template_name = 'books/title_list.html'
     queryset = Book.objects.all()
     context_object_name = 'books'
-    paginate_by = 5
+    paginate_by = 20
 
 
 class AuthorListView(ListView):
     template_name = "books/author_list.html"
     model = Author
-    paginate_by = 5
+    paginate_by = 20
 
 
 class AboutPageView(TemplateView):
@@ -147,6 +146,7 @@ class AuthorCreate(CreateView):
     model = Author
     fields = '__all__'
     template_name = 'books/author_create.html'
+
 
 class AuthorUpdate(UpdateView):
     model = Author
@@ -170,3 +170,7 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+
+class GenreListView(ListView):
+    template_name = 'books/list_genre.html'
+    model = Genre

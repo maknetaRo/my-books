@@ -19,10 +19,15 @@ p, li {
   border: none;
   text-align: justify;
 }
-.books {
+.books  {
   width: 220px;
   float: left;
 }
+.authors {
+  width: 150px;
+  float: left;
+}
+
 .desc {
   margin-left: 15px;
 }
@@ -69,5 +74,5 @@ a, a:hover {
   top: 70%;
 }
 .comment {
-  margin: 20px 0px 20px 20px;
+  margin: 30px 0px 20px 20px;
 }

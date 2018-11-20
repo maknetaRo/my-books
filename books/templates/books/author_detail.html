@@ -3,28 +3,47 @@
 
 
 {% block content %}
+<div class="card">
+  <div class="card-body">
+    <div>
+     <img class="authors" src="{% if author.image %}{{ author.image.url }}{% else %}
+     {% static "authors/no_image.png" %}{% endif %}">
+       <div class="row">
+         <div class="col-sm-9">
+           <h2 class="desc">{{ author }}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p class="desc"><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
+      </div>
+      <div class="row">
+        <p class="desc"><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
+      </div>
+      <div class="row">
+        <h3 class="desc">Biografia:</h2>
+      </div>
+      <div class="row">
+        <p class="desc"> {{ author.description }} </p>
+      </div>
 
- <img src="{% if author.image %}{{ author.image.url }}{% else %}
- {% static "img/authors/no_image.png" %}{% endif %}">
-  <h1>Autor: {{ author }}</h1>
-  <p><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
-  <p><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
-  <h2>Biografia:</h2>
-  <p> {{ author.description }} </p>
-
-  <!-- ta część nie działa, muszę to napisać jakoś inaczej -->
-  <ul>
-    {% for book in author.books %}
-      <li><h3> {{ book.title }}</h3></li>
-          <p>{{ book.text }}</p>
-    {% empty %}
-      <li>Brak książek tego autora</li>
-    {% endfor %}
-  </ul>
-{% if user.is_authenticated %}
-<p><a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a></p>
-<p><a class="btn btn-outline-secondary" href="{% url 'author_delete' author.pk %}">Usuń</a> </p>
-{% endif %}
+      <ul>
+        {% for book in author.book_set.all %}
+          <li><h3><a href="{% url 'book_detail' book.pk %}"</a>{{ book }}</h3></li>
+              <p>{{ book.text }}</p>
+        {% empty %}
+          <li>Brak książek tego autora</li>
+        {% endfor %}
+      </ul>
+    <div class="row">
+      <div class="col-sm-3">
+        {% if user.is_authenticated %}
+        <p><a class="btn btn-outline-secondary" href="{% url 'author_update' pk=author.id %}">Edytuj</a></p>
+        <p><a class="btn btn-outline-secondary" href="{% url 'author_delete' author.pk %}">Usuń</a> </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 {% endblock %}
-</div>

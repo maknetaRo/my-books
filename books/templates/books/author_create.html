@@ -5,7 +5,7 @@
 {% block content %}
   <h2 class='text-center'>Nowy autor</h2>
   <div class="col-md-6 offset-md-3">
-    <form  method="POST" action="{% url 'author_create' %}">
+    <form  method="POST" action="{% url 'author_create' %}" enctype="multipart/form-data">
       {% csrf_token %}
       {% if form.errors %}
       <p>Your Form has Errors...</p>

@@ -5,7 +5,7 @@
 {% block content %}
   <h2 class='text-center'>Edytuj wpis o książce </h2>
     <div class="col-md-6 offset-md-3">
-    <form action="{% url 'book_edit' book.id %}" method="POST">
+    <form action="{% url 'book_edit' book.id %}" method="POST" enctype="multipart/form-data">
 
       {% csrf_token %}
       {% if form.errors %}

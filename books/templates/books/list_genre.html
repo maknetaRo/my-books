@@ -1,0 +1,21 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Lista gatunków</h2>
+{% if genres %}
+  <ul>
+
+    {% for genre in book.genres.all %}
+    <li>
+      <h2>{{ genre.name }}</h2>
+    </li>
+
+    {% endfor %}
+{% endif %}
+</ul>
+
+
+  {% include 'books/pagination.html' with page=page_obj %}
+
+{% endblock %}
