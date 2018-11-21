@@ -6,8 +6,7 @@
 <div class="card">
   <div class="card-body">
     <div>
-     <img class="authors" src="{% if author.image %}{{ author.image.url }}{% else %}
-     {% static "authors/no_image.png" %}{% endif %}">
+     <img class="authors" src="{% if author.image %}{{ author.image.url }}{% endif %}">
        <div class="row">
          <div class="col-sm-9">
            <h2 class="desc">{{ author }}</h1>
