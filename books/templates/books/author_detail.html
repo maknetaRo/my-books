@@ -13,10 +13,10 @@
         </div>
       </div>
       <div class="row">
-        <p class="desc"><strong>Data urodzenia: </strong>{{ author.date_of_birth}}</p>
+        <p class="desc"><strong>Data urodzenia: </strong>{% if author.date_of_birth %}{{ author.date_of_birth }}{% endif %}</p>
       </div>
       <div class="row">
-        <p class="desc"><strong>Data śmierci: </strong>{{ author.date_of_death }}</p>
+        <p class="desc"><strong>Data śmierci: </strong>{% if author.date_of_death %}{{ author.date_of_death}}{% endif %}</p>
       </div>
       <div class="row">
         <h3 class="desc">Biografia:</h2>

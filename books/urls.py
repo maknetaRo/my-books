@@ -25,5 +25,6 @@ urlpatterns = [
     path('book/<int:pk>/comment/', views.add_comment_to_book, name='add_comment_to_book'),
     path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
-    path('genres/', GenreListView.as_view(), name='genres')
+    path('genres/', GenreListView.as_view(), name='genres'),
+    path('book/<int:pk>/quote/', views.add_quote_to_book, name='quote'),
 ]

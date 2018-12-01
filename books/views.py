@@ -1,15 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 from django.core.paginator import Paginator
-from .models import Book, Author, Genre, Author, Comment
+from .models import Book, Author, Genre, Author, Comment, Quote
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from .forms import SignUpForm, EditProfileForm, CommentForm
+from .forms import SignUpForm, EditProfileForm, CommentForm, QuoteForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-
 
 
 def home(request):
@@ -113,6 +112,23 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('book_detail', pk=comment.book.pk)
+
+@login_required
+def add_quote_to_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+
+    if request.method == "POST":
+        form = QuoteForm(request.POST)
+        if form.is_valid():
+            quote = form.save(commit=False)
+            quote.book = book
+            quote.save()
+            return redirect('book_detail', pk=book.pk)
+    else:
+        form = QuoteForm()
+    return render(request,
+                 'books/add_quote_to_book.html',
+                 {'form':form})
 
 
 class AuthorDetailView(DetailView):

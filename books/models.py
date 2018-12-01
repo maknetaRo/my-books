@@ -84,3 +84,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body
+
+class Quote(models.Model):
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='quotes')
+    body = models.TextField(max_length=5000)
+
+    def __str__(self):
+        return self.body

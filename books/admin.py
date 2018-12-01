@@ -1,5 +1,5 @@
 from django.contrib import admin
-from books.models import Genre, Book, Author, Comment, Language
+from books.models import Genre, Book, Author, Comment, Language, Quote
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -25,3 +25,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'book', 'created', 'approved_comment')
     list_filter = ('approved_comment', 'created')
     search_fields = ('name', 'email', 'body')
+
+@admin.register(Quote)
+class QuoteAdmin(admin.ModelAdmin):
+    list_display = ('book', 'body')

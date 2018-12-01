@@ -68,11 +68,13 @@
    </div>
  </nav>
 <header>
-
-       <img src="{% static 'img/blur-book.png' %}" alt="blur books" class="header-image">
+  <div class="picture">
+     <img src="{% static 'img/blur-book.jpg' %}" alt="blur books" class="header-image">
+    <div class="text-block">
        <h1><a class="display-4" href="{% url 'books' %}">Moje książki</a></h1>
-       <p class="lead">Katalog książek, które posiadam, które przeczytałam lub tych, które chcę przeczytać.</p>
-
+       <p class="lead">Katalog książek, które posiadam,<br>  które przeczytałam lub tych, które chcę przeczytać.</p>
+    </div>
+  </div>
 </header>
 <section>
    <div class="container">
@@ -94,7 +96,7 @@
       {% endif %}
     <!-- I'd like to divide books by genre. I want to have a list on the right and
     then I can go to this genre view with links of books -->
-      
+
 
        </ul>
     {% endblock %}

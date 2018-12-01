@@ -32,17 +32,29 @@
     <div class="row">
        <p class="desc"><strong>Opis: </strong> {{ book.text }}</p>
     </div>
+    <div class="row">
+       <p class="desc"><strong>Cytaty: </strong>
+         <ul>
+           {% for quote in book.quotes.all %}
+           <li>{{ quote.body|linebreaks }}{% endfor %}</p></li>
+
+         </ul>
+
+    </div>
   </div>
 </div>
 
         <div class="col-sm-3">
             {% if user.is_authenticated %}
+              <a class="btn btn-outline-secondary" href="{% url 'quote' pk=quote.pk %}">Dodaj cytat</a>
                 <a class="btn btn-outline-secondary" href="{% url 'book_edit' pk=book.pk %}">Edytuj</a>
                 <a class="btn btn-outline-secondary" href="{% url 'book_delete' book.pk %}">Usuń</a>
+
             {% endif %}
         </div>
+
 <hr>
-<p class="desc"><a class="btn btn-outline-secondary" href="{% url 'add_comment_to_book' pk=book.pk %}">Dodaj komentarz</a></p>
+
 
 {% for comment in book.comments.all %}
   {% if user.is_authenticated or comment.approved_comment %}

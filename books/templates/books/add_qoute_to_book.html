@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <h2>Nowy cytat</h2>
+  <form class="post-form"  method="POST" action=".">
+    {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-outline-secondary">Dodaj cytat</button>
+
+  </form>
+
+{% endblock %}

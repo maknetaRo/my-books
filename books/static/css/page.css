@@ -32,17 +32,25 @@ p, li {
   margin-left: 15px;
 }
 
-.header-image {
+.picture {
   position: relative;
-  width: 100%;
-  color: white;
-  padding: 0;
-  margin: 0;
 }
+.header-image {
+  background-size: cover;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 header {
   padding-bottom: 50px;
 }
-
+.text-block {
+  position: absolute;
+  top:50%;
+  left: 10%;
+  color: white;
+}
 a, a:hover {
   color: #696969;
   text-decoration: none;
@@ -60,19 +68,25 @@ a, a:hover {
 }
 
 .display-4 {
-   position: absolute;
    text-align: center;
    color: white;
-   margin-left: 10%;
-   top: 55%;
 }
-.lead {
-  position: absolute;
-  text-align: center;
+.display-4:hover {
   color: white;
-  margin-left: 10%;
-  top: 70%;
 }
+
 .comment {
   margin: 30px 0px 20px 20px;
+}
+.container {
+  min-height: calc(100vh - 70px);
+}
+.footer {
+  position: absolute;
+  height: 50px;
+  background: black;
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: auto;
 }
